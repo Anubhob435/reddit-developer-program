@@ -15,7 +15,7 @@ headers = {
 }
 
 # Make a test request
-url = "https://oauth.reddit.com/api/announcements/v1" 
+url = "https://oauth.reddit.com/top" 
 response = requests.get(url, headers=headers)
 
 # Output
