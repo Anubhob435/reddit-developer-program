@@ -64,3 +64,46 @@ with open(md_path, "w", encoding="utf-8") as f:
         for i, url in enumerate(citations, 1):
             f.write(f"{i}. {url}\n")
 print(f"\nResponse also saved to {md_path}")
+
+
+def perplexity_deep_research(query=None):
+    """
+    Conduct deep research using Perplexity's sonar-deep-research model.
+    
+    Args:
+        query (str, optional): Research query. If None, uses default quantum computing query.
+    
+    Returns:
+        str: The research response content
+    """
+    if query is None:
+        query = "Conduct a comprehensive analysis of the quantum computing industry, including technological approaches, key players, market opportunities, regulatory challenges, and commercial viability projections through 2035."
+    
+    response = client.chat.completions.create(
+        model="sonar-deep-research",
+        messages=[
+            {"role": "user", "content": query}
+        ],
+        max_tokens=2048,  # Deep research typically needs more tokens
+        temperature=0.1,  # Lower temperature for factual research
+        stream=False
+    )
+    
+    content = response.choices[0].message.content
+    
+    # Print the response
+    print("\n--- Perplexity Deep Research Response ---\n")
+    print(content)
+    
+    # Print citations if available
+    citations = getattr(response, 'citations', None)
+    if citations:
+        print("\nCitations:")
+        for i, url in enumerate(citations, 1):
+            print(f"  {i}. {url}")
+    
+    return content
+
+# Example usage:
+result = perplexity_deep_research()
+custom_result = perplexity_deep_research("Analyze the latest developments in AI safety research")
