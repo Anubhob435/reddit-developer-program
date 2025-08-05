@@ -1,0 +1,11 @@
+[project]
+name = "reddit-developer-program"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "dotenv>=0.9.9",
+    "openai>=1.98.0",
+    "praw>=7.8.1",
+]
